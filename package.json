@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "babel server --out-dir serverDist && nodemon serverDist/app.js"
+    "start": "babel server --out-dir serverDist && nodemon serverDist/server.js"
   },
   "author": "",
   "license": "ISC",

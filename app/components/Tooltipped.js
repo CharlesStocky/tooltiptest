@@ -8,27 +8,24 @@ class Tooltip extends React.Component{
       text: ''  
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    //this.handleChange = this.handleChange.bind(this)
   }
   handleSubmit(e){
     e.preventDefault() 
-    console.log(e.target.value)
+    console.log(e.target)
     this.setState({
-      text: e.target.value 
+      text: ''    
     })
   }
-  /*handleChange(e){
-    let texts = e.target.value
-    this.setState(
-      text:  
-    )
-  }*/
   render(){
     return(
-      this.state.text === '' &&
-      <Form 
-        onSubmit={this.handleSubmit} 
-      />
+      <div>
+        { 
+          this.state.text === '' &&
+          <Form 
+            onSubmit={this.handleSubmit} 
+          />
+        }
+      </div>
     ) 
   }
 }
