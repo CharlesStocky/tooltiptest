@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Form = () =>{ 
+const Form = (props) =>{ 
   return(
-    <form> 
-      <input id='textValue' value='tooltip text' type='text'></input>
+    <form onSubmit={props.onSubmit}> 
+      <input id='textValue' placeholder='Enter text to tooltiperize' type='text'></input>
     </form>
   )
 }
