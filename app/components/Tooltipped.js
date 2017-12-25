@@ -1,34 +1,47 @@
 import React from 'react'
 import Form from './TextEntry'
+import Tooltip from './Tooltip'
 
-class Tooltip extends React.Component{
+class Tooltipped extends React.Component{
   constructor(){
     super()
     this.state={
-      text: ''  
+      input: '',  
+      text: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleMouseOver = this.handleMouseOver.bind(this)
   }
   handleSubmit(e){
     e.preventDefault() 
-    console.log(e.target)
     this.setState({
-      text: ''    
+      text: e.target.value 
     })
+    console.log(this.state.text)
+  }
+  handleChange(e){
+    this.setState({
+      input: e.target.value 
+    }) 
+  }
+  handleMouseOver(e){
+    console.log(e) 
   }
   render(){
     return(
       <div>
-        { 
-          this.state.text === '' &&
-          <Form 
-            onSubmit={this.handleSubmit} 
-          />
+        <Form 
+          onSubmit={this.handleSubmit} 
+          onChange={this.handleChange}
+        />
+        {this.state.text !== '' &&
+          <Tooltip onMouseOver={this.handleMouseOver} /> 
         }
       </div>
     ) 
   }
 }
 
-module.exports = Tooltip
+module.exports = Tooltipped
 

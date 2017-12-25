@@ -1,10 +1,11 @@
 import React from 'react';
-import Tooltip from './Tooltipped'
+import Tooltipped from './Tooltipped'
+require('./index.css')
 
 class App extends React.Component{
   render(){
     return(
-      <Tooltip />
+      <Tooltipped />
     )
   }
 }
