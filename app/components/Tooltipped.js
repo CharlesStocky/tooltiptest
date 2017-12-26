@@ -1,24 +1,26 @@
 import React from 'react'
-import Form from './TextEntry'
-import Tooltip from './Tooltip'
+
+// controlled component used to submit entered text to state (once the form is submitted).  
+ 
 
 class Tooltipped extends React.Component{
   constructor(){
     super()
     this.state={
       input: '',  
-      text: ''
+      text: '',
+      moused: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleMouseOver = this.handleMouseOver.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
   }
   handleSubmit(e){
     e.preventDefault() 
     this.setState({
-      text: e.target.value 
+      text: this.state.input  
     })
-    console.log(this.state.text)
   }
   handleChange(e){
     this.setState({
@@ -26,7 +28,15 @@ class Tooltipped extends React.Component{
     }) 
   }
   handleMouseOver(e){
-    console.log(e) 
+    console.log(this.state)
+    this.setState({
+      moused: true  
+    })
+  }
+  handleMouseLeave(e){
+    this.setState({
+      moused: false 
+    }) 
   }
   render(){
     return(
@@ -36,12 +46,23 @@ class Tooltipped extends React.Component{
           onChange={this.handleChange}
         />
         {this.state.text !== '' &&
-          <Tooltip onMouseOver={this.handleMouseOver} /> 
+          <h3 id='hoverDiv' onMouseLeave={this.handleMouseLeave} onMouseOver={this.handleMouseOver}>hover over me</h3>
+        }
+        {this.state.moused === true && 
+          <div>{this.state.text}</div>
         }
       </div>
     ) 
   }
 }
 
-module.exports = Tooltipped
+const Form = (props) =>{
+  return(
+    <form onSubmit={props.onSubmit}>
+      <input id='textValue' onChange={props.onChange} placeholder='Enter text to tooltiperize' type='text'></input>
+      <button type='submit'>Submit</button>
+    </form>
+  )
+}
 
+module.exports = Tooltipped
